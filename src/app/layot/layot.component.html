@@ -1,0 +1,27 @@
+<div class="container" style="margin-top: 20px;">
+
+    <button mat-fab [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
+        </button>
+        <button mat-menu-item disabled>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voice mail</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+        </button>
+    </mat-menu>
+    <mat-form-field style="width: 70%">
+        <input matInput placeholder="search food">
+    </mat-form-field>
+
+</div>
+
+<router-outlet (recChange)="load($event)">
+</router-outlet>

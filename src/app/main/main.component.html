@@ -1,0 +1,216 @@
+<div class="container" style="margin-top: 20px;">
+  <div class="row" *ngIf="rec">
+    <div class="
+
+  col-12
+  ">
+
+      <h1 class="mat-display-1" [innerHTML]="rec.Name | safeHtml "></h1>
+
+
+    </div>
+  </div>
+  <div class="row" *ngIf="rec ;else bigLoader">
+
+    <div class="
+  col-lg-4
+  col-md-6
+  col-sm-12
+  ">
+
+      <mat-card class="example-card">
+        <mat-card-header>
+
+
+
+          <mat-card-subtitle *ngFor="let item of rec.cousines">
+            <mat-icon>fastfood</mat-icon>   {{item.Title}} <small class="cat" >Cousine</small></mat-card-subtitle>
+
+          <mat-card-subtitle *ngFor="let item of rec.categories">
+            <mat-icon>fastfood</mat-icon>  {{item.Title}}<small class="cat">Category</small></mat-card-subtitle>
+        </mat-card-header>
+        <img id="main" mat-card-image [src]="rec.imagerecipes[0].ImgUrl" [alt]="rec.Name">
+        <mat-card-content>
+
+          <mat-chip-list aria-label="Fish selection">
+            <mat-chip *ngFor="let item of rec.Keywords.split(',')">{{item }}</mat-chip>
+
+          </mat-chip-list>
+
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+
+
+    <div class=" col-lg-4 col-md-6  col-sm-12  ">
+
+      <mat-card class="example-card">
+
+        <mat-card-content>
+          <span [innerHTML]="rec.Description | safeHtml"></span>
+        </mat-card-content>
+        <mat-card-content>
+          <app-goolge></app-goolge>
+        </mat-card-content>
+        <mat-card-content>
+          <mat-list role="list">
+
+            <mat-list-item role="listitem" matTooltip="Preparing Time">
+              <mat-icon mat-list-icon>alarm</mat-icon>
+              <h4 mat-line>Preparing {{rec.PrepTime | time}}</h4>
+            </mat-list-item>
+            <mat-list-item role="listitem" matTooltip="Total Time">
+              <mat-icon mat-list-icon>alarm</mat-icon>
+              <h4 mat-line> Total {{rec.TotalTime | time }}</h4>
+            </mat-list-item>
+
+
+            <mat-list-item role="listitem" matTooltip="Person ">
+              <mat-icon mat-list-icon>face</mat-icon>
+
+              <h4 mat-line>{{rec.RecipeYield == '0' ? '1' : rec.RecipeYield }}</h4>
+            </mat-list-item>
+
+          </mat-list>
+
+
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+    <div class=" col-lg-4 col-md-6  col-sm-12  ">
+
+      <mat-card class="example-card">
+
+
+
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Instructions
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <span *ngFor="let item of rec.recipeinstructions" [innerHTML]="item.Title | safeHtml"></span>
+
+
+
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Ingredients
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <mat-selection-list>
+              <mat-list-option *ngFor="let item of rec.ingredients">
+                <span [innerHTML]=" item.Title | safeHtml"></span>
+              </mat-list-option>
+            </mat-selection-list>
+
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Nutrition facts
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+
+              <mat-list-item class="small" *ngIf="rec.CarbohydrateContent" role="listitem">
+                <p mat-line class="title">Carbohydrate</p>
+                <p mat-line> {{rec.CarbohydrateContent}}</p>
+              </mat-list-item>
+
+              <mat-list-item class="small" *ngIf="rec.CholesterolContent" role="listitem">
+                <p mat-line class="title">Cholesterol</p>
+                <p mat-line> {{rec.CholesterolContent}}</p>
+              </mat-list-item>
+
+              <mat-list-item class="small" *ngIf="rec.FatConten" role="listitem">
+                <p mat-line class="title">Fat</p>
+                <p mat-line> {{rec.FatConten}}</p>
+              </mat-list-item>
+              <mat-list-item class="small" *ngIf="rec.FiberContent" role="listitem">
+                <p mat-line class="title">Fiber</p>
+                <p mat-line> {{rec.FiberContent}}</p>
+              </mat-list-item>
+              <mat-list-item class="small" *ngIf="rec.ProteinContent" role="listitem">
+                <p mat-line class="title">Protein</p>
+                <p mat-line> {{rec.ProteinContent}}</p>
+              </mat-list-item>
+              <mat-list-item class="small" *ngIf="rec.SaturatedFatContent" role="listitem">
+                <p mat-line class="title">Saturated Fat </p>
+                <p mat-line> {{rec.SaturatedFatContent}}</p>
+              </mat-list-item>
+              <mat-list-item class="small" *ngIf="rec.ServingSize" role="listitem">
+                <p mat-line class="title">Serving Size </p>
+                <p mat-line> {{rec.ServingSize}}</p>
+              </mat-list-item>
+              <mat-list-item class="small" *ngIf="rec.SodiumContent" role="listitem">
+                <p mat-line class="title"> Sodium</p>
+                <p mat-line> {{rec.SodiumContent}}</p>
+              </mat-list-item>
+              <mat-list-item class="small" *ngIf="rec.SugarContent" role="listitem">
+                <p mat-line class="title"> Sugar</p>
+                <p mat-line> {{rec.SugarContent}}</p>
+              </mat-list-item>
+
+              <mat-list-item class="small" *ngIf="rec.TransFatContent" role="listitem">
+                <p mat-line class="title">Trans Fat</p>
+                <p mat-line> {{rec.TransFatContent}}</p>
+              </mat-list-item>
+
+              <mat-list-item class="small" *ngIf="rec.UnsaturatedFatConten" role="listitem">
+                <p mat-line class="title">Unsaturated Fat Conten</p>
+                <p mat-line> {{rec.UnsaturatedFatConten}}</p>
+              </mat-list-item>
+
+              <mat-list-item class="small" *ngIf="rec.Calories" role="listitem">
+                <p mat-line class="title">Calories</p>
+                <p mat-line> {{rec.Calories}}</p>
+              </mat-list-item>
+
+
+
+
+
+
+
+            </mat-list>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+
+
+
+
+      </mat-card>
+    </div>
+
+  </div>
+  <ng-template #bigLoader>
+    <app-loader></app-loader>
+  </ng-template>
+
+
+
+  <div class="row" *ngIf="popular ;else popLoader">
+
+    <div *ngFor="let item of popular" class="col-lg-4 col-md-6  col-sm-12 denis">
+      <app-card [inRecipe]="item"></app-card>
+    </div>
+
+  </div>
+
+  <ng-template #bigLoader>
+    <app-loader></app-loader>
+  </ng-template>
+</div>

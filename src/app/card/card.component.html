@@ -1,0 +1,18 @@
+<mat-card 
+[routerLink]="['/',recipe.Id]"
+class="example-card">
+    <mat-card-header>
+
+        <mat-card-subtitle class="title-one-line" >{{recipe.Name}}</mat-card-subtitle>
+
+    </mat-card-header>
+    <img mat-card-image 
+    class="card-img"
+    [src]="recipe.ImgUrl" [alt]="recipe.Name">
+    <mat-card-content>
+
+
+
+    </mat-card-content>
+
+</mat-card>
